@@ -1,27 +1,27 @@
-import java.util.*
+import java.io.*
 
-fun main(){
-    val scanner = Scanner(System.`in`)
-    
-    val N = scanner.nextInt()
-    val requests = IntArray(N){ scanner.nextInt() }
-    val totalBudget = scanner.nextInt()
-    
-    var start = 0
-    var end = requests.maxOrNull() ?:0
+fun main() {
+    val br = BufferedReader(InputStreamReader(System.`in`))
+
+    val n = br.readLine().toInt()
+    val requests = br.readLine().split(" ").map { it.toInt() }
+    val totalBudget = br.readLine().toInt()
+
+    var low = 0
+    var high = requests.maxOrNull() ?: 0
     var result = 0
-    
-    while(start <= end){
-        val mid = (start + end)/2
-        val sum = requests.sumOf{ Math.min(it,mid)}
-        
-        if (sum <= totalBudget){
-            result = mid
-            start = mid + 1
+
+    while (low <= high) {
+        val mid = (low + high) / 2
+        val sum = requests.sumOf { Math.min(it, mid) }
+
+        if (sum > totalBudget) {
+            high = mid - 1
         } else {
-            end = mid - 1
+            low = mid + 1
+            result = Math.max(result, mid)
         }
     }
+
     println(result)
-    
 }

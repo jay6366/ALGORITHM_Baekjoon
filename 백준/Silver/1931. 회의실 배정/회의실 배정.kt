@@ -1,23 +1,20 @@
 import java.io.*
 
-fun main() {
+fun main(){
     val br = BufferedReader(InputStreamReader(System.`in`))
-    val n = br.readLine().toInt()
-    val meetings = Array(n) {
-        val (start, end) = br.readLine().split(' ').map { it.toInt() }
-        start to end
-    }
-
-    meetings.sortWith(compareBy({ it.second }, { it.first }))
-
+    val N = br.readLine().toInt()
+    val timeLines = Array(N){ br.readLine().split(' ').map{ it.toInt() }.toIntArray() }
+    
+    val sortedTimeLines = timeLines.sortedWith(compareBy({ it[1]},{ it[0]}))
+    
     var count = 0
     var endTime = 0
-
-    for ((start, end) in meetings) {
-        if (start >= endTime) {
-            endTime = end
-            count++
+    
+    for(timeLine in sortedTimeLines){
+        if(timeLine[0] >= endTime){
+            count += 1
+            endTime = timeLine[1]
         }
     }
-    println(count)
+    println(count)    
 }

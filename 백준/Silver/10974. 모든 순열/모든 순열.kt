@@ -1,24 +1,25 @@
 import java.io.*
 
 fun main(){
-    val bf = BufferedReader(InputStreamReader(System.`in`))
-    val n = bf.readLine().toInt()
-    val used = BooleanArray(n+1)
-    val permutation = IntArray(n)
-  
-    fun generatePermutation(depth: Int, n: Int){
-        if(depth == n){
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    val N = br.readLine().toInt()
+    val visited = BooleanArray(N+1){ false }
+    val permutation = IntArray(N)
+    
+    //depth는 현재 순열의 깊이(현재까지 선택된 숫자의 개수)
+    fun generatePermutation(depth: Int){
+        if(depth == N){
             println(permutation.joinToString(" "))
+            return
         }
-        
-        for(i in 1..n){
-            if(!used[i]){
-                used[i] = true
+        for(i in 1..N){
+            if(!visited[i]){
+                visited[i] = true
                 permutation[depth] = i
-                generatePermutation(depth+1, n)
-                used[i] = false
+                generatePermutation(depth+1)
+                visited[i] = false
             }
         }
     }
-    generatePermutation(0,n)
+    generatePermutation(0)
 }

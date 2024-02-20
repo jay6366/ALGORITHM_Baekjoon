@@ -8,6 +8,7 @@ public class Main{
         int dn = Integer.parseInt(st.nextToken());
         int qn = Integer.parseInt(st.nextToken());
         long[] Sum = new long[dn + 1];
+        Sum[0] = 0;
         st = new StringTokenizer(bf.readLine());
         for(int i=1; i<=dn; i++){
             Sum[i] = Sum[i-1] + Integer.parseInt(st.nextToken());

@@ -1,0 +1,5 @@
+SELECT i.ITEM_ID, i.ITEM_NAME, i.RARITY
+FROM ITEM_INFO i
+LEFT outer JOIN ITEM_TREE t ON i.ITEM_ID = t.PARENT_ITEM_ID
+where t.parent_item_id is null
+ORDER BY i.ITEM_ID DESC;

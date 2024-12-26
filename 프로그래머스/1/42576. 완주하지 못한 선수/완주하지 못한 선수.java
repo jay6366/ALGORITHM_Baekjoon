@@ -1,18 +1,20 @@
 import java.util.*;
 class Solution {
     public String solution(String[] participant, String[] completion) {
-        HashMap<String,Integer> counts = new HashMap<String,Integer>();
-        for(String person : participant){
-            counts.put(person,counts.get(person) == null ? 1 : counts.get(person)+1);
+        HashMap<String,Integer> map = new HashMap<>();
+        
+        for(String member : participant){
+            map.put(member,map.getOrDefault(member,0)+1);
         }
-        for(String person : completion){
-            counts.put(person, counts.get(person) == null ? 1 : counts.get(person)-1);
+        for(String member : completion){
+            map.put(member,map.getOrDefault(member,1)-1);           
         }
-        for(String key : counts.keySet()){
-            if(counts.get(key)!=0){
+        
+        for(String key : map.keySet()){
+            if(map.get(key)!=0){
                 return key;
             }
-        }         
+        }
         return null;
     }
 }

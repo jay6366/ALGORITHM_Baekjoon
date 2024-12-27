@@ -1,7 +1,7 @@
 import java.util.*;
 class Solution {
     public boolean solution(String[] phone_book) {
-        Map<String,Boolean> map = new HashMap<>();
+        HashMap<String,Boolean> map = new HashMap<>();
         
         for(String number : phone_book){
             map.put(number,true);
@@ -13,8 +13,9 @@ class Solution {
                 if(map.containsKey(prefix)){
                     return false;
                 }
-            }
+            }         
         }
+        
         return true;
     }
 }

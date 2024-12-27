@@ -1,23 +1,15 @@
 import java.util.*;
 class Solution {
     public String solution(int[] numbers) {
-        String[] arr = new String[numbers.length];
-        
+        String[] numStrings = new String[numbers.length];
         for(int i=0; i<numbers.length; i++){
-            arr[i] = String.valueOf(numbers[i]);
+            numStrings[i] = String.valueOf(numbers[i]);
         }
         
-        Arrays.sort(arr,(a,b)->(b+a).compareTo(a+b)); 
-        //b+a가 a+b보다 크면 양수반환. 양수니까 a,b위치 교환해야함 b,a로 정렬
+        Arrays.sort(numStrings,(a,b)->(b+a).compareTo(a+b));
         
-        StringBuilder sb = new StringBuilder();
-        for(String x : arr){
-            sb.append(x);
-        }
+        String result = String.join("", numStrings);
         
-        if(sb.toString().startsWith("0")){
-            return "0";
-        }
-        return sb.toString();
+        return result.startsWith("0") ? "0" : result;
     }
 }

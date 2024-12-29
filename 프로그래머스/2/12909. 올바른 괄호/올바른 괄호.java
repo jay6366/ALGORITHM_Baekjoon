@@ -2,6 +2,7 @@ import java.util.*;
 class Solution {
     boolean solution(String s) {
         Stack<Character> stack = new Stack<>();
+        
         for(char x : s.toCharArray()){
             if(x == '('){
                 stack.push(x);
@@ -9,13 +10,14 @@ class Solution {
                 if(stack.isEmpty()){
                     return false;
                 } else {
-                    stack.pop();                    
+                    stack.pop();
                 }
             }
         }
-        if(stack.isEmpty()){
-            return true;            
+
+        if(!stack.isEmpty()){
+            return false;
         }
-        return false;        
+        return true;
     }
 }
